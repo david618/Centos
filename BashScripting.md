@@ -122,25 +122,28 @@ done
 
 ## show_users.sh
 
-<pre>
+```
 #!/bin/bash
 
-while read line
-do 
-	#echo ${line}
-	if [ -z "$(echo ${line} | grep nologin)" ]; then
-		#echo ${line}
-		user=$(echo $line | cut -d ":" -f 1)
-		uid=$(echo $line | cut -d ":" -f 3)
-		gid=$(echo $line | cut -d ":" -f 4)
-		echo ${user} ${uid} ${gid}
-	fi
+echo username userid groupid shell
+while read line; do
+        #echo ${line}
+        if [ -z "$(echo ${line} | grep nologin)" ]; then
+                #echo ${line}
+                user=$(echo ${line} | cut -d ":" -f 1)
+                uid=$(echo ${line} | cut -d ":" -f 3)
+                gid=$(echo ${line} | cut -d ":" -f 4)
+                sh=$(echo ${line} | cut -d ":" -f 7)
+
+
+                echo ${user} ${uid} ${gid} ${sh}
+        fi
 done < /etc/passwd
-</pre>
+```
 
-## com_line_args.sh
+## cmd_line_args.sh
 
-<pre>
+```
 #!/bin/bash
 
 echo "There are $# arguments specified."
@@ -148,15 +151,19 @@ echo "The arguements are: $*"
 echo "The first argument is: $1"
 echo "The process id of the script is: $$"
 
-</pre>
+```
 
 ## if_elif.sh
 
-<pre>
+```
 #!/bin/bash
 
-## Double Square bracket with regex
+Loaded plugins: fastestmirror
+#!/bin/bash
+
+# Double Square Backet to use regex expression
 if [[ $1 =~ ^-?[0-9]+$ ]]; then
+        # It's an integer
         if [ $1 -gt 0 ]; then
                 echo "$1 is a positive integer"
                 exit 1
@@ -165,19 +172,15 @@ if [[ $1 =~ ^-?[0-9]+$ ]]; then
                 exit 2
         elif [ $1 -lt 0 ]; then
                 echo "$1 is a negative integer"
-                exit 3
         fi
-
 else
         echo "$1 is not an integer"
         exit 4
-
 fi
-</pre>
-
+```
 
 ## sys_info.sh
-<pre>
+```
 #!/bin/bash
 
 echo hostnamectl
@@ -185,11 +188,11 @@ echo hostnamectl
 
 echo who
 /usr/bin/who
-</pre>
+```
 
 ## test_int.sh
 
-<pre>
+```
 
 #!/bin/bash
 function isInt() {
@@ -217,10 +220,10 @@ else
 	exit 2
 fi
 
-</pre>
+```
 
 ## while_do_done.sh
-<pre>
+```
 #!/bin/bash
 
 while true; do
@@ -262,4 +265,4 @@ while true; do
 	echo "Press Enter to go back to Menu...."
 	read
 done
-</pre>
+```
