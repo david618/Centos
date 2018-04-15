@@ -72,47 +72,52 @@ done
 
 ## hello.sh
 
-<pre>
+```
 #!/bin/bash
 echo "Hello World"
 exit 1
-</pre>
+```
 
 After exits you can check `$?`.
 
-<pre>
+```
 ./echo $?
 1
-</pre>
+```
 
 
 ## get_kernel_info.sh
 
-<pre>
+```
 #!/bin/bash
 
 PKG_TYPE=kernel
 PKGS=$(rpm -qa | grep $PKG_TYPE)
 
 for PKG in ${PKGS}; do
-	#echo ${PKG}
-	INSTALLED_EPOCH=$(rpm -q --qf "%{INSTALLTIME}\n" $PKG)
-	#echo ${INSTALLED_EPOCH}
-	INSTALLED_DT=$(date -d @${INSTALLED_EPOCH})
-	echo "${PKG} was installed on ${INSTALLED_DT}"
+        #echo ${PKG}
+        INSTALLED_EPOCH=$(rpm -q --qf "%{INSTALLTIME}\n" ${PKG})
+        INSTALLED_DT=$(date -d @${INSTALLED_EPOCH})
+        echo "${PKG} was installed on ${INSTALLED_DT}"
 done
-</pre>
+
+echo "or"
+
+for PKG in ${PKGS}; do
+        echo "${PKG} was installed on $(rpm -q --qf "%{INSTALLTIME:date}\n" ${PKG})"
+done
+```
 
 ## show_args.sh
 
-<pre>
+```
 #!/bin/bash
 
 
 for ARG in "$@"; do
 	echo ${ARG}
 done
-</pre>
+```
 
 
 ## show_users.sh
