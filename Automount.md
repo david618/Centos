@@ -2,7 +2,7 @@
 
 ## Create Shares
 
-On the server (s1) create NFS shares.
+On the server (s1) create [NFS shares](./NFS.md).
 
 <pre>
 showmount -e s1
