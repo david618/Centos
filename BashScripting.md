@@ -15,7 +15,7 @@ Notes
 - Logical Operations: `&&, ||`
 
 File Tests
-<pre>
+```
 -b block special file exists
 -c character special file exists
 -d directory exists
@@ -26,41 +26,49 @@ File Tests
 -x file exists and has file size greater than zero
 -w file exists and is writable
 -x file exists and is executable
-</pre>
-
+```
 
 
 
 ## filesize.sh
 
-<pre>
+```
 #!/bin/bash
 
 DIR=/tmp
 for FILE in $DIR/*; do
 	echo "File ${FILE} is $(stat --print='%s' ${FILE}) bytes"
 done
-</pre>
+```
 
 ## filesize2.sh
 
-<pre>
+List size of files in folder and it's subfolders.
+
+```
 #!/bin/bash
 
-SEARCH_FOLDER=/tmp
+SEARCH_FOLDER=/usr
 
-for f in $SEARCH_FOLDER/*; do
-	if [ -d "${f}" ]; then
-		echo "Processing Folder ${ff}"
-		for ff in ${f}/*; do
-			echo "File ${ff} is $(stat --print='%s' ${ff}) bytes"
-		done
-	else
-		echo "File ${f} is $(stat --print='%s' ${f}) bytes"
-	fi
+for f in ${SEARCH_FOLDER}/*; do
+        if [ -d "${f}" ]; then
+                echo "Processing Folder ${f}"
+                if [ -z "$(ls -A ${f})" ]; then
+                        echo "  Empty Directory"
+                else
+                        for ff in ${f}/*; do
+                                echo "  File ${ff} is $(stat --print='%s' ${ff}) bytes"
+                                #echo "  ${ff}"
+                        done
+                fi
+        else
+                echo "File ${f} is $(stat --print='%s' ${f}) bytes"
+                #echo "${f}"
+        fi
+
 done
 
-</pre>
+```
 
 ## hello.sh
 
