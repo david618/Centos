@@ -62,7 +62,7 @@ pkill -SIGKILL -u worker1
 
 Nice levels from -20 to +19
 
-Priority levesl from 0 to 39
+Priority levels from 0 to 39
 
 ```
 ps axo pid,comm,nice --sort=nice
@@ -83,5 +83,5 @@ You can run this several times to load multiple cpus.
 top
 renice -n 15 (pid)
 top
-killadd dd
+killall dd
 ```
