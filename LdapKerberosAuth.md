@@ -53,36 +53,38 @@ Following Options
 
 Check to see if it's working
 
-<pre>
+```
 su - ipauser1
-</pre>
+```
 
 If configured you'll now be ipauser1.  You will see an error about home directory. 
 
-<pre>
+```
 getent passwd ipauser1
 getent passwd ipauser2
-</pre>
+```
 
 ### Enable Make Home Directory
 
-<pre>
+```
 authconfig --enablemkhomedir --updateall
-</pre>
+```
 
 ### Authenticate to Kerberos
 
-<pre>
+```
 yum -y install pam_krb5
-</pre>
+```
 
 **Note:** Without pam_krb5 autenticate-tui will give some errors.
 
-<pre>
+```
 authenticate-tui
-</pre>
+```
 
-- LDAP Configuration same as above
+- LDAP Configuration 
+  - Uncheck: Use LDAP Authentication 
+  - Check: Use Kerberos
 - Kerberos
   - Realm: EXAMPLE.COM
   - KDS: ipa.example.com
@@ -90,12 +92,12 @@ authenticate-tui
   - DNS: Leave both unchecked
 
 Test
-<pre>
+```
 ssh ipauser2@localhost
 whoami
 pwd
 exit
-</pre>
+```
 
 ## Configure Using GTK
 
@@ -103,20 +105,20 @@ First install X-Windows
 
 Takes about 7 minutes to install X-Windows on min install.
 
-<pre>
+```
 yum -y groupinstall "X Windows System"
 systemctl isolate graphical.target
 yum -y install authconfig-gtk
-</pre>
+```
 
 The GUI is pretty much the same as TUI; with the execption you have an option to "Create home directories on first login"
 
 ## Install IPA Client
 
-<pre>
+```
 yum -y install ipa-client
 ipa-client-install --domain=ipa.example.com --no-ntp --mkhomedir
-</pre>
+```
 
 
 
