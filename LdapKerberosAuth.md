@@ -21,34 +21,35 @@ Copy the file to the client and put it in /etc/openldap/cacerts/
 From client 
 
 ### Install Software Needed
-<pre>
+```
 yum grouplist hidden | grep Directory
 yum groupinstall "Directory Client"
-</pre>
+```
 
 ### Copy CA.crt
 
-<pre>
+```
 cd /etc/openldap/cacerts
 curl -O ipa.example.com/ca.crt
 cat ca.crt
-</pre>
+```
 
 You should see the CA certificate.
 
 ### Run Installer 
 
-<pre>
+```
 authconfig-tui 
-</pre>
+```
 
+Following Options
 - User Information: Check Use LDAP
 - Authentication: Check Use LDAP AUthentication (Leave others)
 - Next
 - Check Use TLS
 - Server: ipa.example.com
 - Base DN: dc=example,dc=com
-</pre>get
+
 
 Check to see if it's working
 
