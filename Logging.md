@@ -11,10 +11,10 @@
 
 ## Service
 
-<pre>
-system-journald
+```
+systemd-journald
 rsyslog
-</pre>
+```
 
 |Code|Priority|Severity                            |
 |----|--------|------------------------------------|
@@ -29,37 +29,37 @@ rsyslog
 
 ## Explore Logging
 
-<pre>
+```
 tail -f /var/log/messages
 journalctl -f
 logger -p local7.notice "Hello"
 journalctl -p local7.debug -f
 logger -p local7.debug "Hello"
 journalctl -p debug  --since 16:00:00
-</pre>
+```
 
 ## Setup Custom Logging
 
 Create a file: `/etc/rsyslog.d/auth-errors.conf`
-<pre>
+```
 authpriv.alert /var/log/auth-errors
-</pre>
+```
 
 ## Perserving Log Journal
 
-<pre>
+```
 mkdir /var/log/journal
 chown root:systemd-journal /var/log/journal/
 chmod 2755 /var/log/journal/
 yum install psmisc
 killall -USR1 systemd-journald
 reboot
-</pre>
+```
 
 After reboot
 
-<pre>
+```
 journalctl -b -1
-
+```
 
 
