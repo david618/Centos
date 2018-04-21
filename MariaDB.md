@@ -180,7 +180,7 @@ mysql -udbuser1 -pdbuser1 inventory -e "select * from product" -sN
 
 Needs to have enough space for data and backup 
 
-<pre>
+```
 Created a LVM partition 2G (/dev/sda1) using fdisk.
 
 pvcreate /dev/sda1
@@ -196,44 +196,44 @@ WARNING: xfs signature detected on /dev/mariavg/inventory at offset 0. Wipe it? 
 
 mkfs -t xfs /dev/mapper/mariavg-inventory
 
-</pre>
+```
 
 ### Create Mount
 
 Locate the current data diretory: `mysqladmin-p(PASSWORD) variables | grep datadir`.  Default is /var/lib/mysql.
 
-<pre>
+```
 systemctl stop mariadb
 mv /var/lib/mysql /var/lib/mysql.OLD
 mkdir /var/lib/mysql
-</pre>
+```
 
 Create Mount entry in /etc/fstab
-<pre>
+```
 /dev/mapper/mariavg-inventory /var/lib/mysql xfs defaults 0 0
-</pre>
+```
 
 Mount and move data
-<pre>
+```
 mount -a
 chown mysql. /var/lib/mysql
 cp -ra /var/lib/mysql.OLD/* var/lib/mysql
 restorecon -Rv /var/lib/mysql
 systemctl start mariadb
-</pre>
+```
 
 ### Backup 
 
-<pre>
+```
 mysql -uroot -p(PASSWORD)
 flush tables with read lock;
-</pre>
+```
 
 From Another Window
 
-<pre>
+```
 lvcreate -n inventory-backup -L 500M -s /dev/mariavg/inventory
-</pre>
+```
 
 The -s option creates a backup of /dev/mariavg/inventory 
 
@@ -242,12 +242,12 @@ Now back at MariaDB prompt
 - exit;
 
 Now you can mount the backup and look at it's contents
-<pre>
+```
 mkdir /mnt/snapshot
 mount -o nouuid /dev/mariavg/inventory-backup /mnt/snapshot/
 cd /mnt/snapshot/
 ls
-</pre>
+```
 
 
 
