@@ -70,7 +70,7 @@ Login as dbuser1: `mysql -u dbuser1 -pdbuser1`
 ## Create Tables From SQL
 
 Create a file `create_inventory_tables.sql`
-<pre>
+```
 drop table if exists product;
 
 create table product(
@@ -96,37 +96,37 @@ create table manufacturer(
 	id	int(10)		not null,
 	name  	varchar(100)	not null
 );
-</pre>
+```
 
 mysql -u dbuser1 -pdbuser1 -D inventory < create_inventory_tables.sql
 
 
 ## Load Data into Tables
 
-Create categories.csv
-<pre>
+Create category.csv
+```
 1,"kitchen"
 2,"bath"
 3,"bedroom"
 4,"garage"
-</pre>
+```
 
 Create manufacturer.csv
-<pre>
+```
 1,"ABC Company"
 2,"Just Things"
 3,"More Stuff"
 4,"Weird Lots"
 5,"Ordinatry Junk"
-</pre>
+```
 
 Create product.csv
-<pre>
+```
 1,"TV",427.33,1,1,3
 2,"Fridge",233.89,2,3,1
 3,"Clothes Washer",445.88,7,1,4
 4,"Computer",342.32,2,2,2
-</pre>
+```
 
 
 mysql -u dbuser1 -pdbuser1 inventory
@@ -137,13 +137,15 @@ From MariaSQL Prompt
 - load data local infile 'product.csv' into table product fields terminated by ',' enclosed by '"' lines terminated by '\n' ignore 0 rows;
 - select * from category;
 
+Help Finding Format for Load Data Local.  From MariaDB prompt `help load data`.  
+
 
 ## Dump Database
 
-<pre>
+```
 mysqldump -u root -p(PASSWORD) --all-database > maria.dump
 mysqldump -u root -p(PASSWORD) inventory > inventory.dump
-</pre>
+```
 
 Dump Options
 - Add Drop Tables: `--add-drop-tables`
@@ -155,23 +157,22 @@ Dump Options
 
 ## Restore from Dump
 
-<pre>
-mysql -u root -p(PASSWORD) in inventory < inventory.dump
-</pre>
+```
+mysql -u root -p(PASSWORD) inventory < inventory.dump
+```
 
 
 ## Execute Queries from Command Line
 
-<pre>
+```
 mysql -udbuser1 -pdbuser1 inventory -e "select * from product"
-</pre>
+```
 
 Remove headers and make output tab-delimited
 
-<pre>
+```
 mysql -udbuser1 -pdbuser1 inventory -e "select * from product" -sN
-</pre>
-
+```
 
 ## Physical Backup
 
