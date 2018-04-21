@@ -2,13 +2,13 @@
 
 ## Install
 
-<pre>
+```
 yum grouplist hidden ids | grep maria
 yum groupinstall mariadb
 systemctl enable mariadb.service
 systemctl start mariadb.service
 ss -ntlup | grep mysql
-</pre>
+```
 
 You'll see port 3306 is up.
 
@@ -16,9 +16,9 @@ You'll see port 3306 is up.
 
 
 ### Disable Network Access
-<pre>
-vi /etc/my.nf
-</pre>
+```
+vi /etc/my.cnf
+```
 
 Add line to the [mysqld] section: `skip-networking=1`
 
@@ -26,10 +26,11 @@ The ss command will not return nothing
 
 ## Run Secure Installation Script
 
-<pre>
+```
 mysql_secure_installation
-</pre>
+```
 
+Options
 - Set root password
 - Remove anonymous users
 - Disallow root login remotely
@@ -38,15 +39,18 @@ mysql_secure_installation
 
 ## Login
 
-<pre>
+```
 mysql -u root -p<PASSWORD>
-</pre>
+```
+
 From MariaDB prompt:
 - show databases;
 - create database inventory;
 - use inventory;
 - use mysql;
 - show tables;
+- create table servers( id int(10) not null auto_increment, name varchar(100) not null, make varchar(100) not null, model varchar(100) not null, primary key(id));
+- create table servers2( id int(10) not null, name varchar(100) not null, make varchar(100) not null, model varchar(100) not null);
 - describe servers;
 - create user dbuser1@localhost identified by 'dbuser1';
 - create user dbuser2@'%' identified by 'dbuser2';
@@ -55,7 +59,7 @@ From MariaDB prompt:
 - grant select on inventory.* to dbuser2@'%';
 - grant all privileges on *.* to dbuser3@localhost;
 - revoke drop on inventory.* from dbuser1@localhost;
-- flush priviledges;
+- flush privileges;
 - exit
 
 Login as dbuser1: `mysql -u dbuser1 -pdbuser1`
