@@ -4,7 +4,7 @@
 
 ### Install 
 
-<pre>
+```
 yum install nfs-utils
 systemctl enable nfs-server.service
 systemctl start nfs-server.service
@@ -13,32 +13,32 @@ chown nfsnobody /nfsshare
 chgrp workers /nfsshare
 chmod 3775 /nfsshare
 vi /etc/exports
-</pre>
+```
 
 Add nfs configuration for share
 
-<pre>
+```
 /nfsshare *.example.com(rw)
-</pre>
+```
 
 Apply configuration
 
-<pre>
+```
 exportfs -rv
 showmount -e
-</pre>
+```
 
 Open Firewall
-<pre>
+```
 firewall-cmd --permanent --add-service=nfs
 firewall-cmd --permanent --add-service=rpc-bind
 firewall-cmd --permanent --add-service=mountd
 firewall-cmd --reload
-</pre>
+```
 
 ## Consume NFS Share
 
-<pre>
+```
 yum -y install nfs-utils
 mkdir /nfsshare
 mount s1://nfsshare /nfsshare
@@ -51,18 +51,20 @@ rm /nfsshare/w1
 Note: cannot delete w1
 exit
 umount /nfsshare
-</pre>
+yum -y install lsof
+lsof /nfsshare
+```
 
 Add entry to /etc/fstab
-<pre>
+```
 s1:/nfsshare /nfsshare nfs defaults 0 0
-</pre>
+```
 
 Mount and test 
-<pre>
+```
 mount -a
 df -h
-</pre>
+```
 
 You should see the share is mounted.
 
