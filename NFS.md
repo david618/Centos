@@ -78,43 +78,48 @@ From IPA added nfs service for both server and client.
 
 Created krb5.keytab with entries for both s1 and c1.
 
-<pre>
+```
 ipa-getkeytab -s ipa.example.com -p host/s1.example.com -k /etc/krb5.keytab
 ipa-getkeytab -s ipa.example.com -p nfs/s1.example.com -k /etc/krb5.keytab
 ipa-getkeytab -s ipa.example.com -p host/c1.example.com -k /etc/krb5.keytab
 ipa-getkeytab -s ipa.example.com -p nfs/c1.example.com -k /etc/krb5.keytab
-</pre>
+```
 
 Replaced the keytab file on both c1 and s1.  
 
 Created a share as before
-<pre>
+```
 mkdir /secnfsshare
 chown nfsnobody /secnfsshare
 chgrp workers /secnfsshare
 chmod 3775 /secnfsshare
 vi /etc/exports
-</pre>
+```
 
 Add nfs configuration for share
 
-<pre>
+```
 /nfsshare *.example.com(rw,sec=krb5)
-</pre>
-
+```
 Apply configuration
 
-<pre>
+SEC Options
+- sys: default trusts uid/gid sent by client
+- krb5: authentication only
+- krb5i: Communications integrity
+- krb5p: Encryption (most secure option)
+
+```
 exportfs -rv
 showmount -e
-</pre>
+```
 
 Test
 
-<pre>
+```
 mkdir /secnfsshare
 mount -o sec=krb5 s1:/secnfsshare /secnfsshare
-</pre>
+```
 
 At first I was getting errors. Added -vvv to /etc/sysconfig/nfs.  
 
