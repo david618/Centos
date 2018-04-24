@@ -3,7 +3,7 @@
 ## yum
 
 Commands
-- `yum list 'mail'`
+- `yum search 'mail'`
 - `yum search all 'mail client'`
 - `yum info mutt`
 - `yum provides */killall`
@@ -21,21 +21,21 @@ Commands
 
 ## Repos
 
-<pre>
+```
 yum repolist all
-</pre>
+```
 
 Enable repo
-<pre>
+```
 yum-config-manager --add-repo="http://dl.fedoraproject.org/pub/epel/7/x86_64/"
-</pre>
+```
 
 Add entry to /etc/yum.repos.d
 
 For example: 
 
-<pre>
+```
 [local-base-repo]
 baseurl=http://gw.example.com/centos/7/os/x86_64
 gpgcheck=0
-</pre>
+```
