@@ -121,6 +121,11 @@ firewall-cmd --reload
 ## Troubleshooting SELinux
 
 The setroubleshootd generates log messages in /var/log/messages.
+```
+yum -y install setroubleshootd
+systemctl reboot
+```
+
 
 The sealert command displays useful information about selinux errors.
 
