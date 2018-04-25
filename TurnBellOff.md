@@ -8,4 +8,10 @@ Then add `set bell-style none`/
 
 Log out and log back in. 
 
-That's it
+## For Everyone
+
+Modify /etc/inputrc 
+
+Just uncomment the line `set bell-style none`.
+
+
