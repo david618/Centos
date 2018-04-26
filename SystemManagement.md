@@ -23,7 +23,7 @@ Commands
 ## Boot Rescue or Emergency
 
 Steps
-- Press `e` during the boot (boot loger screen)
+- Press `e` during the boot (boot screen)
 - Move cursor to the line starting with linux16
 - Append systemd.unit=rescue.target (or emergency.target)
 - Press Ctrl-x to boot
@@ -58,14 +58,13 @@ Steps
 - `touch /.autorelabel`
 - Exit twice (exit)
 
-**Note:** If there are console arguements on the linux16 line remove them.
+**Note:** If there are console arguments on the linux16 line remove them.
 
 ## Repairing Problem /etc/fstab
 
 Steps
 - Enter Emergency Mode (See Above)
 - `mount -oremount,rw /`
-- `mount -a`
 - Identify and fix problems in /etc/fstab
 - Exit twice (exit)
 - `reboot`
@@ -83,17 +82,17 @@ Steps
 ## Manage Processes
 
 Example
-<pre>
+```
 su - worker1
-</pre>
+```
 
 From another shell.
-<pre>
+```
 yum -y install psmisc
 pgrep -l -u worker1
 pstree <PID>
 pkill -SIGKILL -u worker1
-</pre>
+```
 
 worker1's shell is terminated.
 
