@@ -141,7 +141,7 @@ Configure Firewall
 - Internal network device: ens4  (Hostonly Network)
 - External network device: ens3  (NAT Network)
 <pre>
-firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING 0 -o ens4 -j MASQUERADE
+firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING 0 -o ens3 -j MASQUERADE
 firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 0 -i ens4 -o ens3 -j ACCEPT
 firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 0 -i ens3 -o ens4 -m state --state RELATED,ESTABLISHED -j ACCEPT
 </pre>
