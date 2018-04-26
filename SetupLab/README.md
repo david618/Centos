@@ -9,30 +9,24 @@ On the host machine I did a install "Server with GUI".
 ## Install Virtualization
 
 <pre>
-yum groupinstall Virtualization
+yum -y groupinstall "Virtualization Host"
+yum groupinstall "Virtualization Client"
 </pre>
-
-## Connect QEMU 
-
-From Menu select File -> Connection
 
 ## Create Networks
 
-Run Virtual Machine Manager.
+From Menu Edit Connection Details
 
-From Menu select Edit -> Add Connection
-- Hypervisor: QEMU/KVM
-- 
+Under Virtual Networks
 
-
-Create a new Virtual Network
+Add Virtual Network
 - Name: net17216
 - Network: 172.16.0.0/16
 - Enable DHCP
   - Start: 172.16.128.0
-  - End: 172.16.253.255
+  - End: 172.16.253.254
 - Ipv6
-  - fd00::/64
+  - Network: fd00::/64
   - DHCP
     - Start: fd00:100
     - End: fd00::1ff
