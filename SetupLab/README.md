@@ -70,6 +70,7 @@ These can be smaller
 - CPUs: 1
 - Disk: 20G
 - Network Selection: net17216  (No additional network card)
+- Customize add 3 additional Storage Devices and 3 additional network cards
 
 Configure network for s1
 <pre>
