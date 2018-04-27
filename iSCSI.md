@@ -74,57 +74,57 @@ iscsiadm -m node -T iqn.2018-03.com.example:s1 -p 172.16.1.1 -l
 
 You should get back message Login successful.
 
-<pre>
+```
 lsblk
-</pre>
+```
 
 You should see the new block device (e.g. sdd).
 
 
 Look at information
-<pre>
+```
 iscsiadm -m session -P 3
-</pre>
+```
 
 The persistent node is in `/var/lib/iscsi/nodes`
 
 Logout
 
-<pre>
+```
 iscsiadm -m node -T iqn.2018-03.com.example:s1 -p 172.16.1.1 -u
-</pre>
+```
 
 The persistent files still remain in /var/lib/iscsi/nodes.
 
-<pre>
+```
 systemctl restart iscsi
 ldblk
-</pre>
+```
 
 The device returns.
 
 ### Format
 
-<pre>
+```
 mkfs -t xfs /dev/sdd
 blkid /dev/sdd
 
 mkdir /iscsidisk1
 vi /etc/fstab
-</pre>
+```
 
 Add line
 
-<pre>
+```
 UUID=6cdec9cb-37d1-4f44-b3de-3674c51a8d53 /iscsidisk1 xfs _netdev 0 0
-</pre>
+```
 
 ### Delete
 
-<pre>
+```
 iscsiadm -m node -T iqn.2018-03.com.example:s1 -p 172.16.1.1 -u
 iscsiadm -m node -T iqn.2018-03.com.example:s1 -p 172.16.1.1 -o delete
-</pre>
+```
 
 
 
