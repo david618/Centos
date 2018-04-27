@@ -1,0 +1,5 @@
+172.16.1.1  test.example.com test
+172.16.1.1  default.example.com default
+172.16.1.1  wsgiapp.example.com wsgiapp
+172.16.1.1  phpapp.example.com wsgiapp
+172.16.1.1  secure.example.com secure
