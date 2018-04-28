@@ -4,39 +4,40 @@
 
 ### Install 
 
-<pre>
+```
 yum -y install httpd
-</pre>
+```
 
 ### Firewall 
 
-<pre>
+```
 firewall-cmd --add-service=http
 firewall-cmd --add-service=https
-</pre>
+```
 
 ### Start  
-<pre>
+```
 systemctl enable httpd.service
 systemctl start httpd.service
 systemctl status httpd.service
-</pre>
+```
 
 ### Add Basic Index Page
 
-<pre>
+```
 echo "server1" > /var/www/html/index.html
-</pre>
+```
 
 
 ### Test 
 
 From c1 or host OS.
 
-<pre>
+```
 curl s1
 curl -k https://s1
-</pre>
+```
+
 
 Both should return `server1`
 
@@ -44,37 +45,38 @@ Both should return `server1`
 
 ### Create Document Folders
 
-<pre>
+```
 mkdir -p /srv/{default,test}/www
 echo "default" > /srv/default/www/index.html
 echo "test" > /srv/test/www/index.html
 ls -ZR /srv
 restorecon -Rv /srv
 ls -ZR /srv
-</pre>
+```
 
 ### Configure
 
 Finding Examples
-<pre>
+```
 rpm -qil httpd | grep doc
 view /usr/share/doc/httpd-2.4.6/httpd-vhosts.conf
-</pre>
+```
 
-<pre>
+
+```
 vi /etc/httpd/conf.d/default-vhost.conf
 
-&lt;VirtualHost _default_:80&gt;
+<VirtualHost _default_:80>
     DocumentRoot "/srv/default/www"
     ServerName www.example.com
     ErrorLog "/var/log/httpd/default-error"
     CustomLog "/var/log/httpd/default-access" common
-&lt;/VirtualHost&gt;
+</VirtualHost>
 
-&lt;Directory /srv/default/www&gt;
+<Directory /srv/default/www>
     Require all granted
-&lt;/Directory&gt;
-</pre>
+</Directory>
+```
 
 For test
 <pre>
@@ -223,6 +225,7 @@ vi /etc/httpd/conf.d/phpapp-vhost.conf
     ServerName phpapp.example.com
     ErrorLog "/var/log/httpd/phpapp-error"
     CustomLog "/var/log/httpd/phpapp" common
+    DirectoryIndex index.html index.php
 &lt;/VirtualHost&gt;
 
 &lt;Directory /srv/phpapp/www&gt;
@@ -319,6 +322,8 @@ curl -k https://secure.example.com
 Secure Page!
 </pre>
 
+
+**Note:** Adding `ServerAlias *` to ssl.conf sent any request other than `https://secure.example.com` to default. 
 
 
 
