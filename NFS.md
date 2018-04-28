@@ -91,7 +91,9 @@ Created a share as before
 ```
 mkdir /secnfsshare
 chown nfsnobody /secnfsshare
-chgrp workers /secnfsshare
+kinit admin 
+   Provide admin's password
+chgrp editors /secnfsshare
 chmod 3775 /secnfsshare
 vi /etc/exports
 ```
@@ -124,5 +126,14 @@ mount -o sec=krb5 s1:/secnfsshare /secnfsshare
 At first I was getting errors. Added -vvv to /etc/sysconfig/nfs.  
 
 The solution was to restart both c1 and s1.  Then I was able to mount.
+
+```
+su - ipauser1
+   You will get an error about home directory
+cd /secnfsshare
+touch ipa1file1
+ls -l
+    The file should exists with owner ipauser1 and group editors
+```
 
 
