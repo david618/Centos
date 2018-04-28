@@ -10,7 +10,8 @@ Export list for s1:
 /nfsshare   *.example.com
 /share/docs *.example.com
 /share/pics *.example.com
-/share/tmp  *.example.com
+/share/reports  *.example.com
+/autoshare *.example.com
 ```
 
 ## Install
@@ -35,20 +36,20 @@ Change timeout from 300 to 60 for test purposes.
 ```
 
 ### Create autofs file
-In `/etc/auto.master.d/shares.autofs`.
+In `/etc/auto.master.d/local.autofs`.
 
 ```
-/shares /etc/auto.shares
+/local /etc/auto.local
 ```
 
-This tells us the /shares folder is associated with the configuration file /etc/auto.shares.
+This tells us the /local folder is associated with the configuration file /etc/auto.local
 
 ### Create auto.shares
 
-Create `/etc/auto.shares`
+Create `/etc/auto.local`
 
 ```
-nfsshare -rw,sync s1:/nfsshare
+autoshare -rw,sync s1:/autoshare
 ```
 
 This says that when someone tries to access /share/nfsshare it will auto mount from s1:/nfsshare.
@@ -60,45 +61,49 @@ systemctl enable autofs
 systemctl start autofs
 ```
 
-Navigate to the /shares folder.  The ls shows no contents.
+Navigate to the /local folder.  The ls shows no contents.
 
 ```
-cd nfsshare
+cd autoshare
 ```
 
-The nfsshare is mounted automatically.
+The autoshare is mounted automatically.
 
 Navigate out of the folder and after a minute it will disappear again. 
 
 ## Create Automount (Direct Mount)
 
-Modify `/etc/auto.master.d/shares.autofs`
+Create `/etc/auto.master.d/shares.autofs`
 
 ```
 /- /etc/auto.shares
 ```
 
-Modify `/etc/auto.shares`
+Create `/etc/auto.shares`
 
 ```
-/shares/nfsshare -rw,sync s1:/nfsshare
+/shares/docs -rw,sync s1:/shares/docs
+/shares/pics -rw,sync s1:/shares/pics
+/shares/reports -rw,sync s1:/shares/reports
 ```
+
+Restart autofs service
 
 ```
 systemctl restart autofs
 ```
 
-The share is automounted from the start.
+The share is automounted from the start.   The command `ls /shares` will show all three folders (docs,pics,reports). They are not mounted until someone enters a folder. 
 
 ## Create Automount (Indirect Wildcard)
 
-Modify `/etc/auto.master.d/shares.autofs`
+Create `/etc/auto.master.d/userdata.autofs`
 
 ```
-/shares /etc/auto.shares
+/userdata /etc/auto.userdata
 ```
 
-Modify `/etc/auto.shares`
+Create `/etc/auto.userdata`
 
 ```
 * -rw,sync s1:/share/&
@@ -108,10 +113,7 @@ Modify `/etc/auto.shares`
 systemctl restart autofs
 ```
 
-As soon as you ls or cd into one of the shares (e.g. cd /shares/pics); automount, mounts the share.
-
-
-
+None of the folders appear when you `ls /userdata`; however, as soon as you ls or cd into one of the shares (e.g. cd /shares/pics); automount, mounts the share.
 
 
 
