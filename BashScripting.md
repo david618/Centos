@@ -108,6 +108,12 @@ for PKG in ${PKGS}; do
 done
 ```
 
+The available rpm query tags can be listed with `rpm --querytags`.
+
+Using an alternate output formate the date directly output as date `rpm -q --qf "%{INSTALLTIME:date}\n"`
+
+
+
 ## show_args.sh
 
 ```
