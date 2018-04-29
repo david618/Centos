@@ -164,9 +164,6 @@ echo "The process id of the script is: $$"
 ```
 #!/bin/bash
 
-Loaded plugins: fastestmirror
-#!/bin/bash
-
 # Double Square Backet to use regex expression
 if [[ $1 =~ ^-?[0-9]+$ ]]; then
         # It's an integer
