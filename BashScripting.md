@@ -236,8 +236,8 @@ while true; do
 	/usr/bin/clear
 	echo "Menu"
 	echo "-----"
-	echo "[1] Display date/time"
-	echo "[2] Display system info"
+		echo "[1] Display date/time"
+		echo "[2] Display system info"
 	echo "[3] Display local time"
 	echo "[4] Display mounted filesystems"
 	echo "[5] Exit"
@@ -272,3 +272,5 @@ while true; do
 	read
 done
 ```
+
+For the input you could use `read -rsn1 CHOICE`.  This reads one key wihtout having to hit enter.
