@@ -65,17 +65,17 @@ cron.crit       ftp.emerg       mail.error
 
 ## Setup Custom Logging
 
-Create a file: `/etc/rsyslog.d/auth-errors.conf`
+Create a file: `/etc/rsyslog.d/info-messages.conf`
 ```
-authpriv.alert /var/log/auth-errors
+*.info /var/log/info-messages
 ```
 
 Now restart and send a message
 
 ```
 systemctl restart rsyslog
-logger -p authpriv.altert "Some authpriv alert message"
-cat /var/log/auth-errors
+logger -p local7.info "Some info message"
+cat /var/log/info-messages
 ```
 
 ## Perserving Log Journal
