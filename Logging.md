@@ -33,9 +33,11 @@ rsyslog
 tail -f /var/log/messages
 journalctl -f
 logger -p local7.notice "Hello"
-journalctl -p local7.debug -f
+journalctl -p debug -f
 logger -p local7.debug "Hello"
 journalctl -p debug  --since 16:00:00
+journalctl _SYSTEM_UNIT=ssd.service
+journalctl _EXE=/usr/sbin/NetworkManager
 ```
 
 
