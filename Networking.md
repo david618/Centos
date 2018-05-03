@@ -237,6 +237,8 @@ teamdctl team0 state
 ```
 
 Team networks don't work with bridge.
+- Create a Team (team and team-slave)
+- Created a Bridge (Set ip)
 
 ```
 systemctl device disconnect team0
@@ -252,7 +254,7 @@ Add Line
 BRIDGE=br0
 ```
 
-Remove IP configurations from team0 configurations.
+Remove IP configurations from team0 configurations; if they exist.
 
 
 
