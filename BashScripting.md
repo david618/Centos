@@ -271,3 +271,47 @@ done
 ```
 
 For the input you could use `read -rsn1 CHOICE`.  This reads one key wihtout having to hit enter.
+
+
+##  upyet.sh
+
+This script uses a HaspMap nodes.  
+
+```
+#!/usr/bin/env bash
+
+NUM_MASTERS=1
+NUM_PRIVATE_AGENTS=6
+NUM_PUBLIC_AGENTS=2
+
+declare -A nodes
+nodes=(["m"]="${NUM_MASTERS}" ["a"]="${NUM_PRIVATE_AGENTS}" ["p"]="${NUM_PUBLIC_AGENTS}")
+
+allup="false"
+
+while [ "${allup}" != "true" ]; do
+        allup=true
+        for nodename in "${!nodes[@]}"; do
+                #echo "${nodename}  ${nodes[${nodename}]}"
+                numnodes=${nodes[${nodename}]}
+                i=1
+                while [ $i -le ${numnodes} ]; do
+
+                        hostup=$(getent hosts ${nodename}${i})
+                        up=":yes"
+                        if [[ -z "$hostup" ]]; then
+                                up=":no"
+                                allup=false
+                                echo "${nodename}${i}${up}"
+                        fi
+                        #echo "${nodename}${i}${up}"
+                        i=$((i+1))
+                done
+        done
+        if [ "${allup}" == "true" ]; then
+                break
+        fi
+        echo "$(date): Waiting on nodes to come up"
+        sleep 5
+done
+```
