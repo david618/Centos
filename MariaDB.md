@@ -139,6 +139,11 @@ From MariaSQL Prompt
 
 Help Finding Format for Load Data Local.  From MariaDB prompt `help load data`.  
 
+## Add Record using Insert
+
+```
+insert into product (id,name,price,stock,catId,manId) values (5,"Dish Washter",234.44,7,1,4);
+```
 
 ## Dump Database
 
