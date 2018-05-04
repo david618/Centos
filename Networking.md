@@ -207,6 +207,20 @@ nmcli connection stop eth0
 nmcli connection stop eth1
 ```
 
+### Watching 
+
+Install tcpdump
+
+In a roundrobin config open two windows.
+
+In one: `tcpdump -i ens4 icmp and dst host 172.16.0.1`
+In the other: `tcpdump -i ens5 icmp and dst host 172.16.0.1`
+
+Now from host start ping.  `ping s2`
+
+You should see messages alternating between the two hosts.
+
+
 ## Software Bridge
 
 ### Create Bridge
@@ -241,6 +255,7 @@ Team networks don't work with bridge.
 - Created a Bridge (Set ip)
 
 ```
+systemctl -y install bridge-utils
 systemctl device disconnect team0
 systemctl stop NetworkManager
 systemctl disable NetworkManager
