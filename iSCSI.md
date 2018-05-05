@@ -98,7 +98,7 @@ The persistent files still remain in /var/lib/iscsi/nodes.
 
 ```
 systemctl restart iscsi
-ldblk
+lsblk
 ```
 
 The device returns.
