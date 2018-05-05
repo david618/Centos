@@ -2,6 +2,7 @@
 
 Configure an server to use a central email server instead of local email.
 
+
 ## Install
 
 ```
@@ -23,6 +24,17 @@ mydestination =
 Add line
 ```
 local_transport = error:local delivery disabled
+```
+
+**Examples in help**
+```
+rpm -qil postfix | grep doc
+cd /usr/share/doc/postfix-2.10.1
+grep -rl local_transport
+vi README_FILES/STANDARD_CONFIGURATION_README  << Example local_transport
+grep -rl 128
+vi README_FILES/IPV6_README << Example [::1]/128
+
 ```
 
 ## Start Service
