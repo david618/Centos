@@ -14,6 +14,7 @@ yum -y install policycoreutils-python.x86_64
 man semanage-fcontext
 ```
 
+There is also an example: /etc/samba/smb.conf.example.
 
 ## Configure Share
 
