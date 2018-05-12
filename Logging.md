@@ -37,7 +37,7 @@ journalctl -p debug -f
 logger -p local7.debug "Hello"
 journalctl -p debug  --since 16:00:00
 journalctl --since "$(date +"%Y-%m-%d %H:%M:%S" --date="-2 hours")"
-journalctl _SYSTEM_UNIT=ssd.service
+journalctl _SYSTEMD_UNIT=sshd.service
 journalctl _EXE=/usr/sbin/NetworkManager
 ```
 
