@@ -44,7 +44,10 @@ journalctl _EXE=/usr/sbin/NetworkManager
 
 ## List Logger
 
-```logger -p (tab)(tab)
+```
+
+logger -p (tab)(tab)
+
 auth.alert      cron.debug      ftp.err         news.alert
 auth.crit       cron.emerg      ftp.error       news.crit
 auth.debug      cron.err        lpr.alert       news.debug
