@@ -12,6 +12,21 @@ ss -ntlup | grep mysql
 
 You'll see port 3306 is up.
 
+## Help
+
+From mysql prompt enter help (e.g. `help load data` or `help auto_increment`)
+
+From mysqld settings.
+
+```
+rpm -qil mariadb-server | grep mysqld
+
+Then
+
+/usr/libexec/mysqld --help
+/usr/libexec/mysqld --help --verbose | grep networking
+```
+
 ## Configure
 
 
