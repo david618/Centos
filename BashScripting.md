@@ -23,7 +23,7 @@ File Tests
 -f regular file exists
 -L symbolic link exists
 -r file exists and is readable
--x file exists and has file size greater than zero
+-s file has non zero szie
 -w file exists and is writable
 -x file exists and is executable
 ```
