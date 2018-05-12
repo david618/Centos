@@ -35,6 +35,13 @@ Commands
 |g+s (sgid)               |file executes as group               |new files created in directory assigned group of directory|
 |o+s (sticky)             |no effect                            |only owner can delete file in the directory|
 
+
+Find all suid files owned by root.
+
+`find / -user root -perm -4000 2>/dev/null`
+
+
+
 ### umask
 
 Specifies default permissions for new files and directories.
