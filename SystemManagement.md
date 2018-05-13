@@ -39,7 +39,7 @@ Steps
 - `mkdir -p -m2774 /var/log/journal`
 - `chown :systemd-journal /var/log/journal`
 - `yum install psmisc`
-- `killall -USR1 systemd-journtald`
+- `killall -USR1 systemd-journald`
 - `reboot`
 - `journalctl -b-1 -p err`
 
