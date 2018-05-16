@@ -188,6 +188,9 @@ exit
 
 Edit /etc/samba/smb.conf
 
+
+Find man page `man -K "map to guest"`
+
 Add line to global section
 ```
 map to guest = Bad Password
@@ -201,7 +204,7 @@ public = yes
 ```
 
 
-Now test from another server with a user not authoeized.
+Now test from another server with a user not authorized.
 ```
 su - user1
 smbclient -L //s1
