@@ -37,9 +37,12 @@ Commands
 Changing
 ```
 mkdir /sites
-chcon -f https_sys_content_t /sites
-restorecon -v /virtual
+chcon -t httpd_sys_content_t /sites
+ls -lZ /sites
+restorecon -v /sites
+ls -lZ /sites
 ```
+Notice secontext changes back to default_t.
 
 Defining default file context rules
 ```
@@ -66,8 +69,8 @@ The -l -C shows what has changed from base configuration.
 ## Enable Home Directories
 
 Edit /etc/httpd/conf.d/userdir.conf.
-
-Set UserDir public_html
+- Comment out: UserDir disabled
+- Uncomment: UserDir public_html
 
 ```
 firewall-cmd --permanent --add-service=http
@@ -78,8 +81,8 @@ systemctl restart httpd
 From a user (e.g. david)
 ```
 cd ~
-mkdir /public_html
-echo "david" > /public_html/index.html
+mkdir public_html
+echo "david" > public_html/index.html
 chmod 711 ~
 ```
 
