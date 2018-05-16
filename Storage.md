@@ -72,7 +72,6 @@ Create another 512MB LVM parition (/dev/sda3).
 ```
 pvcreate /dev/sda3
 vgextend datavg /dev/sda3
-xfs_growfs /engdata
 ```
 
 Move data off /dev/sda1
