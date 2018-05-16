@@ -10,7 +10,7 @@ man -k _selinux
 man -k httpd_selinux
 ```
 
-**Note:** For centos 7.3 created the file `touch /etc/selinux/targeted/contexts/files/file_contexts.loca`
+**Note:** For centos 7.3 created the file `touch /etc/selinux/targeted/contexts/files/file_contexts.local`
 
 ## Modes
 
