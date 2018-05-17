@@ -84,8 +84,7 @@ sysctl -p
 
 You can set temporarily using `echo 1 > /proc/sys/net/ipv4/ip_foward`
 
-
-
+Setting parallel what is in `/proc/sys`
 
 
 
