@@ -117,18 +117,16 @@ test
 
 ## Setup Python Web App
 
+### Install
+```
+yum -y install mod_wsgi
+```
 ### Docs
 
 ```
 rpm -qil mod_wsgi
 view /usr/share/doc/mod_wsgi-3.4/README
 ```
-
-### Install
-```
-yum -y install mod_wsgi
-```
-
 ### Configure
 
 ```
