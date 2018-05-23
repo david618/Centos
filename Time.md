@@ -47,10 +47,17 @@ The crontab hourly, daily, weekly are bash scripts that run periodically.
 
 Cron jobs cleanup Temp Files
 
+
 ```
 /etc/tmpfiles.d/*.conf
 /run/tmpfiles.d/*.conf
 /usr/lib/tmpfiles.d/*.conf
+```
+
+Man pages
+```
+man tmpfiles.d
+man systemd-tmpfiles
 ```
 
 Change `tmp` file deletion.
