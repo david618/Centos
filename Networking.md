@@ -117,6 +117,25 @@ Another example
 - Change 52 (01010010) to 50 (01010000)
 - Final IPV6: fe80::5054:00ff:ee53:6138/64
 
+Sending ping's
+```
+ping6 -I ens4 fe80::0211:22ff:eeaa:bbcc
+```
+
+Without the -I ping didn't work for link-local addresses; however, it did work for other ipv6 addresses.
+
+
+```
+one server
+nmcli connection modify ens3 +ipv6.addresses bad0::1/64
+
+another server
+nmcli connection modify ens3 +ipv6.addresses bad0::2/64
+```
+
+
+
+
 ## Bonding
 
 Bonding is older way to configure multiple network cards to act as one.
