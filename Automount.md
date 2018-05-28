@@ -35,8 +35,8 @@ Edit `/etc/autofs.conf`
 Change timeout from 300 to 60 for test purposes.
 ```
 
-### Create autofs file
-In `/etc/auto.master.d/local.autofs`.
+### Create autofs file (e.g. shares.autofs)
+In `/etc/auto.master.d/shares.autofs`.
 
 ```
 /local /etc/auto.local
@@ -44,7 +44,7 @@ In `/etc/auto.master.d/local.autofs`.
 
 This tells us the /local folder is associated with the configuration file /etc/auto.local
 
-### Create auto.shares
+### Create auto file (e.g. auto.local)
 
 Create `/etc/auto.local`
 
@@ -52,7 +52,7 @@ Create `/etc/auto.local`
 autoshare -rw,sync s1:/autoshare
 ```
 
-This says that when someone tries to access /share/nfsshare it will auto mount from s1:/nfsshare.
+This says that when someone tries to access /local/autoshare it will auto mount from s1:/nfsshare.
 
 ### Start and Test
 
