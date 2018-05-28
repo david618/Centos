@@ -22,6 +22,7 @@ yum -y install autofs
 
 ### Create Shares Folder
 ```
+mkdir /share
 mkdir /shares
 ```
 
@@ -34,17 +35,17 @@ Change timeout from 300 to 60 for test purposes.
 ```
 
 ### Create autofs file (e.g. nfsshare.autofs)
-In `/etc/auto.master.d/shares.autofs`.
+In `/etc/auto.master.d/nfsshare.autofs`.
 
 ```
-/shares /etc/auto.local
+/share /etc/auto.nfsshare
 ```
 
 This tells us the /local folder is associated with the configuration file /etc/auto.local
 
 ### Create auto file (e.g. auto.nfsshare)
 
-Create `/etc/auto.local`
+Create `/etc/auto.nfsshare`
 
 ```
 nfsshare -rw,sync s1:/nfsshare
@@ -62,7 +63,7 @@ systemctl start autofs
 Navigate to the /shares folder.  The ls shows no contents.
 
 ```
-cd nfsshare
+cd /share/nfsshare
 ```
 
 The nfsshare is mounted automatically.
@@ -98,7 +99,7 @@ The share is automounted from the start.   The command `ls /shares` will show al
 Create `/etc/auto.master.d/shares.autofs`
 
 ```
-/share /etc/auto.shares```
+/shares /etc/auto.shares```
 
 Create `/etc/auto.shares`
 
