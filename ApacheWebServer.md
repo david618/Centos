@@ -5,14 +5,15 @@
 ### Install 
 
 ```
-yum -y install httpd
+yum -y install httpd mod_ssl
 ```
 
 ### Firewall 
 
 ```
-firewall-cmd --add-service=http
-firewall-cmd --add-service=https
+firewall-cmd --permanent --add-service=http
+firewall-cmd --permanent --add-service=https
+firewall-cmd --reload
 ```
 
 ### Start  
