@@ -24,6 +24,7 @@ yum -y install autofs
 ```
 mkdir /share
 mkdir /shares
+mkdir /shares-direct
 ```
 
 ## Configure
@@ -81,9 +82,9 @@ Create `/etc/auto.master.d/shares-direct.autofs`
 Create `/etc/auto.shares-direct`
 
 ```
-/shares/docs -rw,sync s1:/shares/docs
-/shares/pics -rw,sync s1:/shares/pics
-/shares/reports -rw,sync s1:/shares/reports
+/shares-direct/docs -rw,sync s1:/shares/docs
+/shares-direct/pics -rw,sync s1:/shares/pics
+/shares-direct/reports -rw,sync s1:/shares/reports
 ```
 
 Restart autofs service
