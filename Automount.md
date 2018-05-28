@@ -8,17 +8,15 @@ On the server (s1) create [NFS shares](./NFS.md).
 showmount -e s1
 Export list for s1:
 /nfsshare   *.example.com
-/share/docs *.example.com
-/share/pics *.example.com
-/share/reports  *.example.com
-/autoshare *.example.com
+/shares/docs *.example.com
+/shares/pics *.example.com
+/shares/reports  *.example.com
 ```
 
 ## Install
 ```
 yum -y install autofs
 ```
-
 
 ## Create Automount (Indirect Mount)
 
@@ -35,21 +33,21 @@ Edit `/etc/autofs.conf`
 Change timeout from 300 to 60 for test purposes.
 ```
 
-### Create autofs file (e.g. shares.autofs)
+### Create autofs file (e.g. nfsshare.autofs)
 In `/etc/auto.master.d/shares.autofs`.
 
 ```
-/local /etc/auto.local
+/shares /etc/auto.local
 ```
 
 This tells us the /local folder is associated with the configuration file /etc/auto.local
 
-### Create auto file (e.g. auto.local)
+### Create auto file (e.g. auto.nfsshare)
 
 Create `/etc/auto.local`
 
 ```
-autoshare -rw,sync s1:/autoshare
+nfsshare -rw,sync s1:/nfsshare
 ```
 
 This says that when someone tries to access /local/autoshare it will auto mount from s1:/nfsshare.
@@ -61,25 +59,25 @@ systemctl enable autofs
 systemctl start autofs
 ```
 
-Navigate to the /local folder.  The ls shows no contents.
+Navigate to the /shares folder.  The ls shows no contents.
 
 ```
-cd autoshare
+cd nfsshare
 ```
 
-The autoshare is mounted automatically.
+The nfsshare is mounted automatically.
 
 Navigate out of the folder and after a minute it will disappear again. 
 
 ## Create Automount (Direct Mount)
 
-Create `/etc/auto.master.d/shares.autofs`
+Create `/etc/auto.master.d/shares-direct.autofs`
 
 ```
-/- /etc/auto.shares
+/- /etc/auto.shares-direct
 ```
 
-Create `/etc/auto.shares`
+Create `/etc/auto.shares-direct`
 
 ```
 /shares/docs -rw,sync s1:/shares/docs
@@ -97,16 +95,15 @@ The share is automounted from the start.   The command `ls /shares` will show al
 
 ## Create Automount (Indirect Wildcard)
 
-Create `/etc/auto.master.d/userdata.autofs`
+Create `/etc/auto.master.d/shares.autofs`
 
 ```
-/userdata /etc/auto.userdata
-```
+/share /etc/auto.shares```
 
-Create `/etc/auto.userdata`
+Create `/etc/auto.shares`
 
 ```
-* -rw,sync s1:/share/&
+* -rw,sync s1:/shares/&
 ```
 
 ```
